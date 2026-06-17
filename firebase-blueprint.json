@@ -1,0 +1,126 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User account credential profile representation.",
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "targetGoalTons": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "email",
+        "name",
+        "createdAt"
+      ]
+    },
+    "CarbonProfile": {
+      "title": "CarbonProfile",
+      "description": "Captured user carbon factors parameters for carbon score estimations.",
+      "type": "object",
+      "properties": {
+        "carMilesPerWeek": {
+          "type": "number"
+        },
+        "carType": {
+          "type": "string"
+        },
+        "flightsShortPerYear": {
+          "type": "number"
+        },
+        "flightsLongPerYear": {
+          "type": "number"
+        },
+        "publicTransitHoursPerWeek": {
+          "type": "number"
+        },
+        "electricityKwhPerMonth": {
+          "type": "number"
+        },
+        "cleanEnergyPercentage": {
+          "type": "number"
+        },
+        "heatingType": {
+          "type": "string"
+        },
+        "householdSize": {
+          "type": "number"
+        },
+        "dietType": {
+          "type": "string"
+        },
+        "localFoodRatio": {
+          "type": "number"
+        },
+        "foodWasteLevel": {
+          "type": "string"
+        },
+        "shoppingFrequency": {
+          "type": "string"
+        },
+        "recyclingHabit": {
+          "type": "string"
+        }
+      }
+    },
+    "Pledge": {
+      "title": "Pledge",
+      "description": "Subscribed eco-positive actions and current implementation states.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "impactKg": {
+          "type": "number"
+        },
+        "difficulty": {
+          "type": "string"
+        },
+        "enrolled": {
+          "type": "boolean"
+        },
+        "completed": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Identified primary user information collection."
+    },
+    "/users/{userId}/configs/profile": {
+      "schema": "CarbonProfile",
+      "description": "Document holding the user lifestyle assessment parameters."
+    },
+    "/users/{userId}/configs/pledges": {
+      "schema": "object",
+      "description": "Document holding user active carbon pledges list."
+    },
+    "/users/{userId}/configs/ai_analysis": {
+      "schema": "object",
+      "description": "Document holding custom tailored AI feedback results."
+    }
+  }
+}

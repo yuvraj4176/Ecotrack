@@ -1,0 +1,6 @@
+{
+  "name": "Carbon Footprint Awareness Platform",
+  "description": "An interactive, full-stack application to estimate personal carbon emissions, pledge eco-friendly actions, and receive AI-guided reduction plans.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

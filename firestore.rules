@@ -1,0 +1,28 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default-deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Auth state helpers
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // User details and nested configs
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+
+      // Support configs doc queries: profiles, pledges, and AI coaches
+      match /configs/{docId} {
+        allow read, write: if isOwner(userId);
+      }
+    }
+  }
+}
